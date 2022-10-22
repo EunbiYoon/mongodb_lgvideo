@@ -1,6 +1,7 @@
 from flask import Flask, render_template,request
 import datetime
 from pymongo import MongoClient
+import warnings
 
 def create_app():
     app=Flask(__name__)
@@ -77,4 +78,10 @@ def create_app():
             for entry in app.db.entries.find({})
         ]
         return render_template("index.html", entries=entries_with_date)
+
+    if __name__ == "__main__":
+        warnings.warn("use 'python -m nltk', not 'python -m nltk.downloader'",         DeprecationWarning)
+        app.run_server(debug=True)
+
     return app
+
