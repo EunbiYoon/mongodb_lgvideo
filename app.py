@@ -82,5 +82,7 @@ def create_app():
             for entry in app.db.entries.find({})
         ]
         return render_template("index.html", entries=entries_with_date)
+    if os.environ["LOCAL"] == "yes":
+        app.run(host='0.0.0.0', port=8080, debug=True)
     return app
 
