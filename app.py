@@ -79,8 +79,7 @@ def create_app():
         ]
         return render_template("index.html", entries=entries_with_date)
 
-    if __name__ == "__main__":
-        warnings.warn("use 'python -m nltk', not 'python -m nltk.downloader'",         DeprecationWarning)
+    if __name__ == '__main__':
         app.run_server(debug=True)
 
     return app
