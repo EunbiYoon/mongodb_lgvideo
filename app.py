@@ -2,14 +2,11 @@ import os
 import datetime
 from flask import Flask, render_template, request
 from pymongo import MongoClient
-from dotenv import load_dotenv
-
-load_dotenv()
 
 
 def create_app():
     app=Flask(__name__)
-    client=MongoClient(os.environ.get("MONGODB_URI"))
+    client=MongoClient("mongodb+srv://eunbiyoon:Emily135@microblog-application.vihgli5.mongodb.net/test")
     app.db=client.voc
 
     @app.route("/", methods=["POST"])
@@ -82,7 +79,8 @@ def create_app():
             for entry in app.db.entries.find({})
         ]
         return render_template("index.html", entries=entries_with_date)
-    if os.environ["LOCAL"] == "yes":
-        app.run(host='0.0.0.0', port=8080, debug=True)
+    if __name__ == "__main__":
+        port = int(os.environ.get("PORT", 5000")
+        app.run(host="0.0.0.0", port=port)
     return app
 
