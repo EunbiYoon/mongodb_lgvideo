@@ -12,7 +12,7 @@ def create_app():
     client=MongoClient(os.environ.get("MONGODB_URI"))
     app.db=client.voc
 
-    @app.route("/", methods=["GET","POST"])
+    @app.route("/", methods=["POST"])
     def home():
         if request.method=="POST":
             entry_content=request.form.get("content")
