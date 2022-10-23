@@ -1,7 +1,11 @@
-from flask import Flask, render_template,request
+import os
 import datetime
+from flask import Flask, render_template, request
 from pymongo import MongoClient
-from nltk.downloader import download, download_shell 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 def create_app():
     app=Flask(__name__)
@@ -78,9 +82,5 @@ def create_app():
             for entry in app.db.entries.find({})
         ]
         return render_template("index.html", entries=entries_with_date)
-
-    if __name__ == '__main__':
-        app.run_server(debug=True)
-
     return app
 
